@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Solution {
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int[] test1 = {5,7,3,9,4,9,8,3,1};
+        int[] test1 = {99};
 
         int res1 = solution.largestUniqueNumber(test1);
         System.out.println(res1);
@@ -26,18 +26,33 @@ public class Solution {
      * 数组中不存在仅出现一次的整数。
      */
     public int largestUniqueNumber(int[] nums) {
-        int res = -1;
+        // 能否使用两个变量代替map
+        // int max = -1, preMax = -1;
 
-        // map存储出现整数和其出现次数
-        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        /* 解题思路:
+          1. 遍历nums
+          2. 比较当前Num和
+          X 行不通
+         */
+        // 能否使用数组来代替map
+        /* 解题思路:
+        1 <= A.length <= 2000
+        0 <= A[i] <= 1000
+          1. 将nums数组中的每个值作为index，出现次数作为value存入数组中
+          2. 因为值为index，所以数组中倒序访问就是从大到小访问
+          3. 倒序遍历数组，如果该值==1则返回该值
+         */
+
+        int[] map = new int[1001];
+
         for (int num : nums) {
-            if(!hashMap.containsKey(num)) hashMap.put(num, 1);
-            else hashMap.put(num, hashMap.get(num)+1);
+            map[num]++;
         }
 
-        // 遍历map，value为1的记录最大值
-        for (Integer k : hashMap.keySet()) if(hashMap.get(k) == 1) res = Math.max(k, res);
+        for(int i = map.length - 1; i >= 0; i--) {
+            if (map[i] == 1) return i;
+        }
 
-        return res;
+        return -1;
     }
 }
