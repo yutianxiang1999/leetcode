@@ -1,7 +1,9 @@
 package com.leetcode.part346;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class Solution {
     public static void main(String[] args) {
@@ -35,26 +37,23 @@ public class Solution {
      * 最多调用 next 方法 104 次
      */
     static public class MovingAverage {
-        List<Integer> list;
+        Queue<Integer> queue;
         int size;
+        double sum;
 
         public MovingAverage(int size) {
+            queue = new ArrayDeque<>();
             this.size = size;
-            this.list = new ArrayList<>();
+            sum = 0;
         }
 
         public double next(int val) {
-            list.add(val);
-            int len = list.size();
-            if(len > size) {
-                list = list.subList(1, list.size());
-                len = list.size();
+            if (queue.size() == size) {
+                sum -= queue.poll();
             }
-            int sum = 0;
-            for (Integer integer : list) {
-                sum += integer;
-            }
-            return (double) sum / len;
+            queue.offer(val);
+            sum += val;
+            return sum / queue.size();
         }
     }
 }
