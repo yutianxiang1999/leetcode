@@ -1,7 +1,5 @@
 package com.leetcode.part255;
 
-import com.leetcode.Utils.TreeNode;
-
 import java.util.Stack;
 
 public class Solution {

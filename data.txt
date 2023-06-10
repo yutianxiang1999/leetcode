@@ -1,0 +1,7 @@
+hello world
+hello spark
+hello hive
+hello spark
+hello hadoop is good
+hello world
+spark is better than hadoop
